@@ -2,12 +2,12 @@ import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import { Tabs } from "expo-router";
 import React from "react";
-import { Image, ImageBackground, Text } from "react-native";
+import { Image, ImageBackground, Text, View } from "react-native";
 
 const TabIcon = ({focused, icon, title}: any) => {
 
     if (focused) {
-        return (
+        return ( // if focused, show highlight
             <ImageBackground
             source={images.highlight}
             className="flex-row items-center justify-center w-28 h-14 mt-4 rounded-full overflow-hidden"
@@ -21,6 +21,15 @@ const TabIcon = ({focused, icon, title}: any) => {
             </ImageBackground>
         );
     }
+        return ( // else show tinted icon
+            <View className="size-full justify-center items-center mt-4 rounded-full">
+            <Image
+                source={icon}
+                className="w-5 h-5"
+                tintColor="#A8B5DB"
+            />
+            </View>
+        )
 }
 
 const _layout = () => {
