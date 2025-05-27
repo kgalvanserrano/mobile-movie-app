@@ -1,3 +1,8 @@
+// This file is used to define the layout of the app, including the tab navigation
+// and the styles for the tab bar.
+// It uses the Expo Router and React Native components to create a custom tab bar
+// with icons and labels.
+
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import { Tabs } from "expo-router";
