@@ -1,5 +1,6 @@
 // This file is the entry point for the app. It is used to set up the app's navigation and layout.
 // It is also used to set up the app's theme and other global settings.
+import MovieCard from "@/components/MovieCard";
 import SearchBar from "@/components/SearchBar";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
@@ -48,7 +49,9 @@ export default function Index() {
             <FlatList
              data ={movies}
              renderItem={({ item }) => (
-              <Text className="text-white text-sm">{item.title}</Text>
+              <MovieCard
+                { ... item } // spread operator to pass all the properties of the item as props
+              />
              )}
               keyExtractor={(item) => item.id.toString()}
               numColumns={3}
