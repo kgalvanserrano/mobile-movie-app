@@ -21,14 +21,9 @@ const search = () => {
     } = useFetch(() => fetchMovies({ query: searchQuery }), false); //set 2nd argument to false if you don't want to auto fetch on mount, otherwise movie cards will not show up on first render
 
     useEffect(() => {
-
       const timeoutID = setTimeout(async () => {
         if(searchQuery.trim()) {
           await loadMovies();
-
-          if(movies?.length > 0 && movies?.[0])
-            await updateSearchCount(searchQuery, movies[0]);
-          updateSearchCount(searchQuery, movies[0]);
         } else {
             reset()
         }
@@ -36,6 +31,12 @@ const search = () => {
 
       return () => clearTimeout(timeoutID); //cleanup function to clear the timeout
     }, [searchQuery])
+
+    useEffect(() => {
+      if(movies?.length > 0 && movies?.[0]) {
+        updateSearchCount(searchQuery, movies[0]);
+      }
+    }, [movies]);
 
   return (
     <View className='flex-1 bg-primary'>
